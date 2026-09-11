@@ -11,6 +11,12 @@ export const routes: Routes = [
 		path: 'products',
 		loadComponent: () => import('./features/products/products.component').then((module) => module.ProductsComponent)
 	},
+	{
+		path: 'invoices',
+		canActivate: [authGuard],
+		data: { title: 'Facturas' },
+		loadComponent: () => import('./features/invoices/invoices.component').then((module) => module.InvoicesComponent)
+	},
 	...['dashboard', 'categories', 'users', 'orders'].map((path) => ({
 		path,
 		canActivate: [authGuard],

@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>{{ data ? 'Editar factura' : 'Nueva factura' }}</h2>
+<form [formGroup]="form" (ngSubmit)="save()">
+  <mat-dialog-content>
+    <div class="form-grid">
+      <mat-form-field appearance="outline"><mat-label>Cliente</mat-label><input matInput formControlName="customer"><mat-error>Indica el cliente.</mat-error></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Correo electrónico</mat-label><input matInput type="email" formControlName="email"><mat-error>Indica un correo válido.</mat-error></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Fecha de emisión</mat-label><input matInput [matDatepicker]="issuePicker" formControlName="issueDate"><mat-datepicker-toggle matIconSuffix [for]="issuePicker"></mat-datepicker-toggle><mat-datepicker #issuePicker></mat-datepicker></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Vencimiento</mat-label><input matInput [matDatepicker]="duePicker" formControlName="dueDate"><mat-datepicker-toggle matIconSuffix [for]="duePicker"></mat-datepicker-toggle><mat-datepicker #duePicker></mat-datepicker></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Estado</mat-label><mat-select formControlName="status"><mat-option value="Pendiente">Pendiente</mat-option><mat-option value="Pagada">Pagada</mat-option><mat-option value="Anulada">Anulada</mat-option></mat-select></mat-form-field>
+    </div>
+    <div class="lines-heading"><h3>Conceptos</h3><button mat-stroked-button type="button" (click)="addLine()">Añadir línea</button></div>
+    <div formArrayName="lines" class="lines">@for (line of lines.controls; track line; let index = $index) { <div class="line" [formGroupName]="index"><mat-form-field appearance="outline"><mat-label>Producto o servicio</mat-label><input matInput formControlName="product"></mat-form-field><mat-form-field appearance="outline"><mat-label>Cantidad</mat-label><input matInput type="number" formControlName="quantity"></mat-form-field><mat-form-field appearance="outline"><mat-label>Precio</mat-label><input matInput type="number" formControlName="unitPrice"></mat-form-field><button mat-icon-button type="button" aria-label="Eliminar línea" (click)="removeLine(index)">×</button></div> }</div>
+    <mat-form-field appearance="outline" class="full-width"><mat-label>Notas</mat-label><textarea matInput rows="3" formControlName="notes"></textarea></mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end"><button mat-button type="button" (click)="cancel()">Cancelar</button><button mat-flat-button color="primary" type="submit">{{ data ? 'Guardar cambios' : 'Crear factura' }}</button></mat-dialog-actions>
+</form>

@@ -1,6 +1,29 @@
 <main class="catalog">
-  <header class="catalog-header"><a class="brand" href="/products"><span class="brand-mark">m</span><span>mi tienda</span></a><nav aria-label="Secciones"><a class="active" href="/products">Productos</a><a href="/dashboard">Dashboard</a><a href="/orders">Pedidos</a></nav><label class="search"><span aria-hidden="true">⌕</span><span class="sr-only">Buscar productos</span><input type="search" placeholder="Buscar piezas" [ngModel]="query()" (ngModelChange)="query.set($event)" /></label></header>
-  <section class="intro"><p class="eyebrow">Colección actual</p><h1>Piezas con propósito.</h1><p>Diseño sereno, materiales nobles y pequeños placeres diarios.</p></section>
-  <div class="filters" role="group" aria-label="Categorías">@for (item of categories; track item) { <button type="button" [class.selected]="category() === item" (click)="category.set(item)">{{ item }}</button> }</div>
-  <section class="grid" aria-label="Lista de productos">@for (product of products(); track product.id) { <article><div class="image"><img [src]="product.imageUrl" [alt]="product.name" /></div><div class="info"><div><h2>{{ product.name }}</h2><p>{{ product.category }} · {{ product.stock }} disponibles</p></div><strong>{{ product.price | currency:'EUR':'symbol':'1.0-0' }}</strong></div></article> } @empty { <p>No encontramos productos.</p> }</section>
+  <header class="catalog-header"><a class="brand" href="/products"><span class="brand-mark">m</span><span>mi
+        tienda</span></a>
+    <nav aria-label="Secciones">
+      <a class="active" href="/products">Productos</a>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/orders">Pedidos</a>
+            <a href="/invoices">Facturas</a>
+
+    </nav><label class="search"><span aria-hidden="true">⌕</span><span class="sr-only">Buscar productos</span><input
+        type="search" placeholder="Buscar piezas" [ngModel]="query()" (ngModelChange)="query.set($event)" /></label>
+  </header>
+  <section class="intro">
+    <p class="eyebrow">Colección actual</p>
+    <h1>Piezas con propósito.</h1>
+    <p>Diseño sereno, materiales nobles y pequeños placeres diarios.</p>
+  </section>
+  <div class="filters" role="group" aria-label="Categorías">@for (item of categories; track item) { <button
+      type="button" [class.selected]="category() === item" (click)="category.set(item)">{{ item }}</button> }</div>
+  <section class="grid" aria-label="Lista de productos">@for (product of products(); track product.id) { <article>
+      <div class="image"><img [src]="product.imageUrl" [alt]="product.name" /></div>
+      <div class="info">
+        <div>
+          <h2>{{ product.name }}</h2>
+          <p>{{ product.category }} · {{ product.stock }} disponibles</p>
+        </div><strong>{{ product.price | currency:'EUR':'symbol':'1.0-0' }}</strong>
+      </div>
+    </article> } @empty { <p>No encontramos productos.</p> }</section>
 </main>
