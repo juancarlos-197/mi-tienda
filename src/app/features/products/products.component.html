@@ -5,7 +5,14 @@
       <a class="active" href="/products">Productos</a>
       <a href="/dashboard">Dashboard</a>
       <a href="/orders">Pedidos</a>
-            <a href="/invoices">Facturas</a>
+      <a href="/invoices">Facturas</a>
+      <div [hidden]="test() == ''">
+        <label for="">
+          mensaje de prueba : {{ test() }}
+        </label>
+      </div>
+      <input type="button" value="test" (click)="hacerTest()   ">
+
 
     </nav><label class="search"><span aria-hidden="true">⌕</span><span class="sr-only">Buscar productos</span><input
         type="search" placeholder="Buscar piezas" [ngModel]="query()" (ngModelChange)="query.set($event)" /></label>
